@@ -1,22 +1,35 @@
 <!DOCTYPE html>
-<html lang="">
+<html lang="" ng-app="app">
 	<head>
 	 	<!-- Required meta tags always come first -->
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Title Page</title>
+		<title>Memory Game</title>
 		<!-- Bootstrap CSS -->
 		<link rel="stylesheet" href="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/css/bootstrap.css">
 		<link rel="stylesheet" href="style.css">
 	</head>
-	<body>
-		<h1 class="text-xs-center">Hello World</h1>
-
+	<body ng-controller="appCtrl">
+		<h1 class="text-xs-center" >Memory Game</h1>
+		<div class="container">
+			<div class="row" ng-repeat="row in deck | groupBy:6">
+				<div class="item-holder" ng-repeat="card in row" ng-click="flip($index)">
+					<div class="col-xs-2" ng-hide="deck[$index].hide">
+						{{ card.image }}
+					</div>
+					<div class="col-xs-2" ng-hide="!deck[$index].hide">
+						?
+					</div>
+				</div>
+			</div>
+		</div>
 		<!-- jQuery -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 		<!-- Bootstrap JavaScript -->
 		<script src="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/js/bootstrap.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/angular-filter/0.5.8/angular-filter.min.js'></script>
 		<script src="index.js"></script>
 	</body>
 </html>
