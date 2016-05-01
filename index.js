@@ -3,7 +3,6 @@ var app = angular.module('app', ['angular.filter']);
 app.controller('appCtrl', function($scope, $filter){
 
 	orderBy = $filter('orderBy');
-	// $scope.chunkBy = $filter('chunkBy')
 
 	var halfCardArray = [
 		"c10.jpg",
@@ -26,10 +25,10 @@ app.controller('appCtrl', function($scope, $filter){
 		"sace.jpg"
 	];
 
+	// make two copes of each card.
 	var allCardArray = halfCardArray.concat(halfCardArray);
 
-	$scope.hide = false;
-	
+	// flipped will contain the cards that are currently flipped over
 	var flipped = [] 
 
 	$scope.flip = function(card){
@@ -89,7 +88,6 @@ app.controller('appCtrl', function($scope, $filter){
 		return -0.5 + Math.random();
 	};
 
-
 	function createDeck(){
 		deck = [];
 		for(i in allCardArray){
@@ -100,7 +98,8 @@ app.controller('appCtrl', function($scope, $filter){
 		return orderBy(deck, $scope.randomOrder, true);
 	}
 	$scope.restart = function(){
-		$scope.deck = createDeck();	
+		$scope.deck = createDeck();
+		flipped = [];	
 	}
 	$scope.restart();
 });
