@@ -3,18 +3,38 @@ var app = angular.module('app', ['angular.filter']);
 app.controller('appCtrl', function($scope, $filter){
 
 	orderBy = $filter('orderBy');
+	// $scope.chunkBy = $filter('chunkBy')
 
-	var halfCardArray = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r'];
+	var halfCardArray = [
+		"c10.jpg",
+		"cace.jpg",
+		"cjack.jpg",
+		"cking.jpg",
+		"cqueen.jpg",
+		"d10.jpg",
+		"dace.jpg",
+		"djack.jpg",
+		"dking.jpg",
+		"dqueen.jpg",
+		"h10.jpg",
+		"hace.jpg",
+		"hjack.jpg",
+		"hking.jpg",
+		"hqueen.jpg",
+		"sjack.jpg",
+		"s10.jpg",
+		"sace.jpg"
+	];
+
 	var allCardArray = halfCardArray.concat(halfCardArray);
 
 	$scope.hide = false;
 	
 	var flipped = [] 
 
-	$scope.flip = function(index){
-		var card = $scope.deck[index]
+	$scope.flip = function(card){
+		
 		// do nothing if the card has already been matched.
-
 		if (card.matched) return;
 		
 		// prevent the same card from being flipped over twice
@@ -79,6 +99,8 @@ app.controller('appCtrl', function($scope, $filter){
 		}
 		return orderBy(deck, $scope.randomOrder, true);
 	}
-
-	$scope.deck = createDeck()
+	$scope.restart = function(){
+		$scope.deck = createDeck();	
+	}
+	$scope.restart();
 });

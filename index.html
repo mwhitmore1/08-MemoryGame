@@ -11,18 +11,25 @@
 		<link rel="stylesheet" href="style.css">
 	</head>
 	<body ng-controller="appCtrl">
-		<h1 class="text-xs-center" >Memory Game</h1>
-		<div class="container">
-			<div class="row" ng-repeat="row in deck | groupBy:6">
-				<div class="item-holder" ng-repeat="card in row" ng-click="flip($index)">
-					<div class="col-xs-2" ng-hide="deck[$index].hide">
-						{{ card.image }}
-					</div>
-					<div class="col-xs-2" ng-hide="!deck[$index].hide">
-						?
+		<h1 class="text-xs-center" id="header">Memory Game</h1>
+		<div class="flex-container">
+			<div class="container">
+				<div ng-repeat="row in deck | chunkBy: 6" class="row">
+					<div ng-repeat="card in row" ng-click="flip(card)">
+						<div class="col-xs-2" ng-hide="card.hide">
+							<img class="card" src="img/{{card.image}}">
+						</div>
+						<div class="col-xs-2" ng-hide="!card.hide">
+							<img class="card" src="img/joker.jpg">
+						</div>
 					</div>
 				</div>
 			</div>
+		</div>
+		<div id="restart">
+			<h1 class="text-xs-center" ng-click="restart()">
+				Restart
+			</h1>
 		</div>
 		<!-- jQuery -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
